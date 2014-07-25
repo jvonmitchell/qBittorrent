@@ -557,7 +557,7 @@ void HttpConnection::respondCommand(const QString& command) {
     }
     return;
   }
-  if(command == "toggleSelectedTorrentsSequentialDownload") {
+  if(command == "toggleTorrentSequentialDownload") {
     QString hash = m_parser.post("hash");
     QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
     if (h.is_valid()) {
