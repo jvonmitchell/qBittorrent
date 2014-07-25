@@ -202,6 +202,15 @@ initializeWindows = function(){
 			});
 		}
 	};
+	
+	sequentialFN = function() {
+	 var h = myTable.selectedIds();
+	 if(h.length) {
+	  h.each(function(hash, index) {
+	   new Request({url: 'command/toggleTorrentSequentialDownload', method: 'post', data: {hash: hash}}).send();
+	  });
+	 }
+	};
 
 	['pause','resume', 'recheck'].each(function(item) {
 		addClickEvent(item, function(e){

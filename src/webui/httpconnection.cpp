@@ -557,6 +557,15 @@ void HttpConnection::respondCommand(const QString& command) {
     }
     return;
   }
+  if(command == "toggleSelectedTorrentsSequentialDownload") {
+    QString hash = m_parser.post("hash");
+    QTorrentHandle h = QBtSession::instance()->getTorrentHandle(hash);
+    if (h.is_valid()) {
+      h.set_sequential_download(!h.is_sequential_download());
+    }
+    return;
+  }
+  
   if (command == "setTorrentDlLimit") {
     QString hash = m_parser.post("hash");
     qlonglong limit = m_parser.post("limit").toLongLong();
